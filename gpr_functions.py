@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 import sys
+import math
+from statistics import mean
 
 from sklearn.preprocessing import StandardScaler, RobustScaler
 from sklearn.pipeline import Pipeline
@@ -15,148 +17,122 @@ from sklearn.gaussian_process.kernels import DotProduct, WhiteKernel, RBF, Mater
 
 
 '''Function to return a set of predicitions, with errors, 
-for a set of compound data using a dictionary of models.
-Compound data should be in pandas format, models must be
-a dictionary of models...'''
+for a set of compound data using a dictionary of kernels.
+Compound data should be in pandas format, kernels must be
+a dictionary of kernels...'''
 
 # returns mean absolute error and mean squared error
 def custom_scoring(tfa_pred, tfa_pred_loo):
     return (tfa_pred - tfa_pred_loo)**2, tfa_pred - tfa_pred_loo
 
 
-def get_predictions(comp_data, 
-                    models, 
-                    scaler = RobustScalar()
+def get_predictions(X,
+                    y, 
+                    kernels, 
+                    scaler = RobustScaler()
                     ):
+
+    results = []
+    print(X)
+    print(y)
+    x = np.linspace(np.min(X.flatten()), np.max(X.flatten()), 1000).reshape(-1, 1)
+
+    for kernel_name, kernel in kernels.items():
+
+        model = GaussianProcessRegressor(kernel = kernel, n_restarts_optimizer = 7)
+        pipe = Pipeline([('scaler', scaler), ('model', model)])
+        pipe.fit(X, y)
+        y_pred, y_pred_std = pipe.predict(x, return_std=True)
+       
+
+        # Calculate maximum peak height
+
+        peak_index, _ = find_peaks(y_pred.ravel(), height = 5)
+        indexs = [0] + list(peak_index) + [-1]
+        
+        index_values = [y_pred[x] for x in indexs]
+
+        #index_values[0] = index_values[0] + 5 # if there is no significant improvement upon adition of reagent, choose the lowest value.
+
+        peak_index = index_values.index(max(index_values))
+
+        x_peak, y_peak = x[peak_index], y_pred[peak_index]
+            
+
+        #perfrom cross validation on each model    
+        loo = LeaveOneOut()
+
+        # Initialize a list to store negative mean and actual errors
+        neg_aes = []
+
+        # Loop through the LeaveOneOut splits
+        for train_index, test_index in loo.split(X):
+            X_train, X_test = X[train_index], X[test_index]
+            y_train, y_test = y[train_index], y[test_index]
+
+            pipe.fit(X_train, y_train)
+            abs_error = -abs(pipe.predict(X_test) - y_test)
+            neg_aes.append(abs_error[0])
+        
+        print(neg_aes)
+        mae = -mean(neg_aes)
+
+
+
+        model_results = {'kernel' : kernel_name, 'optimum': (x_peak, y_peak), 'predictions' : (x.flatten(), y_pred), 'pred_std' : y_pred_std, 'mae' : mae}
+
+        results.append(model_results)
+            
+    return results
+
+
+
+def model_selector(model_results):
+    print(model_results[0]['mae'])
+    best_model_dic = min(model_results, key = lambda x: x['mae'], default=None)
+    #best_model = best_model_dic.values()[0]
+    #best_model.update({'kernel_name' : best_model_dic.keys()[0]})
+    return best_model_dic
+
+
+'''Plot each set of predictions'''
+def plot_predicitions(data,  # list of dictionaries
+                      xlabel, 
+                      ylabel):
     
-    model = {'GP (Matern 5/2 + White)' : GaussianProcessRegressor(
-                kernel = 1.0 * Matern(length_scale=1e0, length_scale_bounds=(1e-1, 1e1), nu=3/2) + WhiteKernel(
-                noise_level=1e0, noise_level_bounds=(1e1, 1e1)), n_restarts_optimizer = 10
-            ),
-            'GP (RBF + White)' : GaussianProcessRegressor(
-                kernel = 1.0 * RBF(length_scale=1e0, length_scale_bounds=(1e-1, 1e1)) + WhiteKernel(
-                    noise_level=1e0, noise_level_bounds=(1e1, 1e1)), n_restarts_optimizer = 10
-            ),
-            
-                    }
+    no_comp = len(set([x['compound'].split(' ')[0] for x in data])) #get the number of starting materials, so the dimentions are correct when plotting multiple products
 
-    obs_data = {'tfa_equiv': np.array([float(i) for i in list(comp_data.columns)]), 'obs':{}}
-    prediction_data = {}
-    score_data = {}
-    sigma_data = {}
-    opt_tfa = {}
+    fig, ax = plt.subplots(math.ceil(no_comp/3), 3, figsize = (15,15))
 
-    X = obs_data['tfa_equiv'].reshape(-1, 1)
-    x = np.linspace(min(X), max(X), 1000).reshape(-1, 1)
+    x = np.linspace(0, 25, 1000)
 
-    #scoring = {'Neg MAE': 'neg_mean_absolute_error', 'Neg MSE': 'neg_mean_squared_error'}
+    color_count = 0
+    colors = ['blue','red','green']
 
-    for i, product in enumerate(comp_data.iterrows()):
+    for i, comp_data in enumerate(data):
 
-        product_obs = np.array(product[1:])
-        obs_data['obs'].update({'product'+str(i) : product_obs}) # extend the dictionary for each product
-        prediction_data.update({'product'+str(i) : {}})
-        score_data.update({'product'+str(i) : {}})
-        sigma_data.update({'product'+str(i) : {}})
-        opt_tfa.update({'product'+str(i) : {}})
+        x = comp_data['predictions'][0]
+        y = comp_data['predictions'][1]
+        stdev = comp_data['pred_std']
 
-        y = product_obs.reshape(-1, 1)
+        plt.plot(x, y, color = colors[color_count])
+    
+        plt.fill(np.concatenate([x, x[::-1]]),
+                 np.concatenate([y - 1.9600 * stdev, y + 1.9600 * stdev[::-1]]),
+                 alpha=.3, 
+                 fc='b', 
+                 ec='None')
 
-        for name, model in models.items():
+        if i == len(data) - 1 or data[i]['compound'].split(' ')[0] != data[i+1]['compound'].split(' ')[0]:
+            plt.title(comp_data['compound'])
+            plt.xlabel(xlabel)
+            plt.ylabel(ylabel)
+            plt.savefig(comp_data['compound'] + '_plot.png')
+            plt.clf()
+            color_count = 0
 
-            pipe = Pipeline([('scaler', scaler), ('model', model)])
-            pipe.fit(X, y)
+        else:
+            color_count += 1
+        
 
-            try:
-                y_pred, sigma = pipe.predict(x, return_std=True)
-            except:
-                y_pred = pipe.predict(x)
 
-            # Calculate maximum peak height
-
-            index, _ = find_peaks(y_pred.ravel(), height = 5)
-            index = [0] + list(index) + [-1]
-            #print(index)
-            
-            #try:
-            tfa_pred = float(x[index][0]), float(y_pred[index][0])
-
-            for j in range(1, len(index)):
-            
-                if y_pred[index][j] > y_pred[index][j-1] + 5:
-                    tfa_pred = float(x[index][j]), float(y_pred[index][j])
-                    
-                        
-
-            #except:
-             #   if y_pred[0] + 5 >= y_pred[-1]:
-              #      tfa_pred = float(X[0]), float(y_pred[0])
-#
- #               else:
-  #                  tfa_pred = float(X[-1]), float(y_pred[-1])
-            
-            #print(tfa_pred)
-
-            loo = LeaveOneOut()
-
-            # Initialize a list to store negative mean and actual errors
-            neg_aes = []
-            neg_ses = []
-
-            # Loop through the LeaveOneOut splits
-            for train_index, test_index in loo.split(X):
-                X_train, _ = X[train_index], X[test_index]
-                y_train, _ = y[train_index], y[test_index]
- 
-                pipe.fit(X_train, y_train)
-                y_pred_loo = pipe.predict(x)
-
-                # Calculate maximum peak height
-                index, _ = find_peaks(y_pred_loo.ravel(), height = 5)
-                index = [0] + list(index) + [-1]
-               
-                
-                #try:
-                tfa_pred_loo = float(x[index][0])
-
-                for j in range(1, len(index)):
-                
-                    if y_pred_loo[index][j] > y_pred_loo[index][j-1] + 5:
-                        tfa_pred_loo = float(x[index][j])
-                        
-                            
-
-                #except:
-                 #   if y_pred_loo[0] + 5 >= y_pred_loo[-1]:
-                  #      tfa_pred_loo = float(X[0])
-#
- #                   else:
-  #                      tfa_pred_loo = float(X[-1])
-
-            
-
-                # Calculate custom score (MSE)
-                se, ae = custom_scoring(tfa_pred[0], tfa_pred_loo)
-                neg_ses.append(float(-abs(se)))
-                neg_aes.append(float(-abs(ae)))
-                #print(neg_aes)
-
-            # Calculate the average custom score
-            mae = abs(np.mean(neg_aes))
-            mse = abs(np.mean(neg_ses))
-            
-            
-            scores = {'MAE' : mae, 'MSE' : mse}
-            
-            
-            prediction_data['product'+str(i)].update({name : y_pred})
-            score_data['product'+str(i)].update({name : scores})
-            if 'sigma' in locals():
-                sigma_data['product'+str(i)].update({name : sigma})
-                del sigma
-            opt_tfa['product'+str(i)].update({name : tfa_pred})
-
-            
-            
-            
-    return obs_data, prediction_data, score_data, sigma_data , opt_tfa
