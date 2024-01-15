@@ -100,11 +100,7 @@ def plot_predicitions(data,  # list of dictionaries
                       xlabel, 
                       ylabel):
     
-    no_comp = len(set([x['compound'].split(' ')[0] for x in data])) #get the number of starting materials, so the dimentions are correct when plotting multiple products
-
-    fig, ax = plt.subplots(math.ceil(no_comp/3), 3, figsize = (15,15))
-
-    x = np.linspace(0, 25, 1000)
+    #no_comp = len(set([x['compound'].split(' ')[0] for x in data])) #get the number of starting materials, so the dimentions are correct when plotting multiple products
 
     color_count = 0
     colors = ['blue','red','green']
@@ -116,12 +112,13 @@ def plot_predicitions(data,  # list of dictionaries
         stdev = comp_data['pred_std']
 
         plt.plot(x, y, color = colors[color_count])
-    
-        plt.fill(np.concatenate([x, x[::-1]]),
-                 np.concatenate([y - 1.9600 * stdev, y + 1.9600 * stdev[::-1]]),
-                 alpha=.3, 
-                 fc='b', 
-                 ec='None')
+
+        # Calculate the lower and upper bounds for the confidence interval
+        lower_bound = y - 1.9600 * stdev
+        upper_bound = y + 1.9600 * stdev
+
+        # Plot the shaded area
+        plt.fill_between(x, lower_bound, upper_bound, alpha=0.3, facecolor='blue', edgecolor='None')
 
         if i == len(data) - 1 or data[i]['compound'].split(' ')[0] != data[i+1]['compound'].split(' ')[0]:
             plt.title(comp_data['compound'])
