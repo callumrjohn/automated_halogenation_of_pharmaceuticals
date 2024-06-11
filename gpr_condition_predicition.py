@@ -135,10 +135,11 @@ if noise_yn == 'y':
     print('Added White Kernel to all kernels...')
 
     for model in selected_kernels:
-        selected_kernels[model] += (WhiteKernel(noise_level=1e0, noise_level_bounds=(1e1, 1e1)))
+        selected_kernels[model] += (WhiteKernel(noise_level=1e0, noise_level_bounds=(1e-1, 1e1)))
 else:
     print('White kernel not added to kernels...')
 
+os.mkdir('plots')
 #run the model for each set of data
 plot_data = []
 model_selections = pd.DataFrame(columns = ['best_model', 'mae(loo)','pred_opt_condition','pred_max_yield'])    

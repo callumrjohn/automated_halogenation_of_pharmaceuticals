@@ -44,19 +44,21 @@ def get_predictions(X,
         pipe.fit(X, y)
         y_pred, y_pred_std = pipe.predict(x, return_std=True)
        
-
+        print(x)
+        print(y_pred)
+        print(y_pred.ravel())
         # Calculate maximum peak height
 
         peak_index, _ = find_peaks(y_pred.ravel(), height = 5)
         indexs = [0] + list(peak_index) + [-1]
         
-        index_values = [y_pred[x] for x in indexs]
+        index_values = [y_pred.ravel()[z] for z in indexs]
 
         #index_values[0] = index_values[0] + 5 # if there is no significant improvement upon adition of reagent, choose the lowest value.
 
-        peak_index = index_values.index(max(index_values))
+        #peak_index = np.argmax(peak_index)
 
-        x_peak, y_peak = x[peak_index], y_pred[peak_index]
+        x_peak, y_peak = x.ravel()[peak_index], y_pred.ravel()[peak_index]
             
 
         #perfrom cross validation on each model    
@@ -100,7 +102,11 @@ def plot_predicitions(data,  # list of dictionaries
                       xlabel, 
                       ylabel):
     
-    #no_comp = len(set([x['compound'].split(' ')[0] for x in data])) #get the number of starting materials, so the dimentions are correct when plotting multiple products
+    no_comp = len(set([x['compound'].split(' ')[0] for x in data])) #get the number of starting materials, so the dimentions are correct when plotting multiple products
+
+    #fig, ax = plt.subplots(math.ceil(no_comp/3), 3, figsize = (15,15))
+
+    x = np.linspace(0, 25, 1000)
 
     color_count = 0
     colors = ['blue','red','green']
@@ -113,12 +119,14 @@ def plot_predicitions(data,  # list of dictionaries
 
         plt.plot(x, y, color = colors[color_count])
 
-        # Calculate the lower and upper bounds for the confidence interval
-        lower_bound = y - 1.9600 * stdev
         upper_bound = y + 1.9600 * stdev
-
-        # Plot the shaded area
-        plt.fill_between(x, lower_bound, upper_bound, alpha=0.3, facecolor='blue', edgecolor='None')
+        lower_bound = y - 1.9600 * stdev
+        plt.fill_between(x, upper_bound, lower_bound, alpha = .3, fc = colors[color_count], ec = 'None')
+        #plt.fill(np.concatenate([x, x[::-1]]),
+        #         np.concatenate([y - 1.9600 * stdev, y + 1.9600 * stdev[::-1]]),
+        #         alpha=.3, 
+        #         fc='b', 
+        #         ec='None')
 
         if i == len(data) - 1 or data[i]['compound'].split(' ')[0] != data[i+1]['compound'].split(' ')[0]:
             plt.title(comp_data['compound'])
