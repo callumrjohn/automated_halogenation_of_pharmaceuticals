@@ -148,19 +148,28 @@ for index, row in df.iterrows():
     print('Running model for ' + str(index + '...'))
 
     row_trim = row.dropna() #discard any missing values
-    #x = row.index.astype(float).reshape(-1, 1)
     x = row.index.values.astype(float).reshape(-1, 1)
     y = row.values
-    model_results = get_predictions(X = x, y = y, kernels = selected_kernels, scaler = RobustScaler())
+    model_results = get_predictions(X = x, 
+                                    y = y, 
+                                    kernels = selected_kernels, 
+                                    scaler = RobustScaler()
+                                    )
     #print(model_results)
     best_model_results = model_selector(model_results)
 
-
-
     plot_data.append({'compound' : index} | best_model_results)
-    model_selections.loc[index] = [best_model_results['kernel'], best_model_results['mae'], best_model_results['optimum'][0], best_model_results['optimum'][1]]
 
-plot_predicitions(plot_data, 'TFA equivalents','NMR Yield (%)')
+    model_selections.loc[index] = [best_model_results['kernel'], 
+                                   best_model_results['mae'], 
+                                   best_model_results['optimum'][0], 
+                                   best_model_results['optimum'][1]
+                                   ]
+
+plot_predicitions(plot_data, 
+                  'TFA equivalents', 
+                  'NMR Yield (%)',
+                  )
 
 model_selections.to_csv('model_stats.csv')
 
