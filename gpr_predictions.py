@@ -47,30 +47,35 @@ class Halogenation:
 
 
     @property
-    def acid_equiv(self):
-        return np.array([x[0] for x in self.data])
+    def acidequiv(self):
+        return np.array([float(x[0]) for x in self._data])
 
     
     @property
     def yieldvalues(self):
-        return np.array([x[1] for x in self.data])
+        return np.array([float(x[1]) for x in self._data])
     
     @property
     def convvalues(self):
         if self.data.shape[1] == 3:
-            return np.array([x[2] for x in self.data])
+            return np.array([float(x[2]) for x in self._data])
         else:
             return None
 
 
     def gprcalculate(self, 
                       kernel, 
-                      scaler = RobustScaler(),
-                      height = 5,
-                      dset = 'yield',
+                      **kwargs,
                       ):
-        #run the GPR model
-        X = self.acid_equiv.reshape(-1, 1)
+        
+        #default values for kwargs
+        kernelname = kwargs.get('kernelname', str(kernel))
+        scaler = kwargs.get('scaler', RobustScaler())
+        height = kwargs.get('height', 5)
+        dset = kwargs.get('dset', 'yield')
+
+       
+        X = self.acidequiv.reshape(-1, 1)
         if dset == 'yield':
             Y = [self.yieldvalues]
         elif dset == 'conv':
@@ -81,6 +86,7 @@ class Halogenation:
         else:
             raise ValueError("dset must be either 'yield', 'conv' or 'both'")
 
+        #run the GPR model
         model = GaussianProcessRegressor(kernel = kernel, n_restarts_optimizer = 7)
         pipe = Pipeline([('scaler', scaler), ('model', model)])
         x = np.linspace(np.min(X.flatten()), np.max(X.flatten()), 1000).reshape(-1, 1)
@@ -100,9 +106,9 @@ class Halogenation:
             maxima = model_pred[indexs]
 
             if (dset == 'yield' or dset == 'both') and i == 0:
-                self.yieldoutputs.update({model.kernel_ : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima}})
+                self.yieldoutputs.update({kernelname : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima}})
             else:
-                self.convoutputs.update({model.kernel_ : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima}})
+                self.convoutputs.update({kernelname : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima}})
 
 
     def pickoptimum(self,
