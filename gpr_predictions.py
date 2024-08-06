@@ -112,8 +112,14 @@ class Halogenation:
 
 
     def pickoptimum(self,
-                    kernel,
+                    **kwargs,
                     ):
+        
+        try:
+            kernel = kwargs.get('kernel', self.yieldoutputs.keys()[0])
+        
+        except:
+            raise ValueError("Run .gprcalculate() first to generate predictions")
         
         self.optimum = kernel['maxima'][0]
         for i in range(len(kernel['maxima'])-1):
