@@ -116,21 +116,21 @@ class Halogenation:
                     ):
         
         try:
-            kernel = kwargs.get('kernel', self.yieldoutputs.keys()[0])
+            kernel = kwargs.get('kernel', list(self.yieldoutputs.keys())[0])
         
         except:
             raise ValueError("Run .gprcalculate() first to generate predictions")
         
-        self.optimum = kernel['maxima'][0]
-        for i in range(len(kernel['maxima'])-1):
-            if kernel['maxima'][i][1] + 5 < kernel['maxima'][i+1][1]: #if there is no significant increase in yield, minimise acid equiv
-                self.optimum = kernel['maxima'][i+1]
+        self.optimum = self.yieldoutputs[kernel]['maxima'][0]
+        for i in range(len(self.yieldoutputs[kernel]['maxima'])-1):
+            if self.yieldoutputs[kernel]['maxima'][i][1] + 5 < self.yieldoutputs[kernel]['maxima'][i+1][1]: #if there is no significant increase in yield, minimise acid equiv
+                self.optimum = self.yieldoutputs[kernel]['maxima'][i+1]
         
         #find corresponding conversion
         if self.convoutputs[kernel] != None:
             convindex = np.where(self.yieldoutputs[kernel]['prediction'] == self.optimum)
-            conv = self.convoutputs[kernel]['prediction'][convindex[0]]
-            self.optimum = np.column_stack((self.optimum, conv))
+            conv = self.convoutputs[kernel]['prediction'][convindex[0]][0][-1]
+            self.optimum = np.append(self.optimum, conv)
         
         return self.optimum
 
