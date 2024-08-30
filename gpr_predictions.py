@@ -1,7 +1,9 @@
 import numpy as np
+from statistics import mean
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import RobustScaler
+from sklearn.model_selection import LeaveOneOut
 from scipy.signal import find_peaks
 
 class Halogenation:
@@ -105,31 +107,63 @@ class Halogenation:
 
             maxima = model_pred[indexs]
 
+
+            #perfrom cross validation on each model
+            loo = LeaveOneOut()
+
+            #initialize a list to store negative mean and actual errors
+            neg_aes = []
+
+            #loop through the LeaveOneOut splits
+            for train_index, test_index in loo.split(X):
+                X_train, X_test = X[train_index], X[test_index]
+                y_train, y_test = y[train_index], y[test_index]
+
+                pipe.fit(X_train, y_train)
+                abs_error = -abs(pipe.predict(X_test) - y_test)
+                neg_aes.append(abs_error[0])
+            
+            #print(neg_aes)
+            mae = -mean(neg_aes)
+
+
             if (dset == 'yield' or dset == 'both') and i == 0:
-                self.yieldoutputs.update({kernelname : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima}})
+                self.yieldoutputs.update({kernelname : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima, 'mae': mae}})
             else:
-                self.convoutputs.update({kernelname : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima}})
+                self.convoutputs.update({kernelname : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima, 'mae': mae}})
+    
+    #find the best model for yield and conversion
+    def best_model_yield(self):
+        bestmodel = min([self.yieldoutputs[kernel]['mae'] for kernel in self.yieldoutputs.keys()])
+        bestkernel = [kernel for kernel in self.yieldoutputs.keys() if self.yieldoutputs[kernel]['mae'] == bestmodel]
+        return bestkernel[0]
+    
+    def best_model_conv(self):
+        bestmodel = min([self.convoutputs[kernel]['mae'] for kernel in self.convoutputs.keys()])
+        bestkernel = [kernel for kernel in self.convoutputs.keys() if self.convoutputs[kernel]['mae'] == bestmodel]
+        return bestkernel[0]
 
-
+    #pick the optimum 
     def pickoptimum(self,
                     **kwargs,
                     ):
         
         try:
-            kernel = kwargs.get('kernel', list(self.yieldoutputs.keys())[0])
+            yield_kernel = kwargs.get('yield_kernel', list(self.yieldoutputs.keys())[0])
+            conv_kernel = kwargs.get('conv_kernel', list(self.convoutputs.keys())[0])
         
         except:
             raise ValueError("Run .gprcalculate() first to generate predictions")
         
-        self.optimum = self.yieldoutputs[kernel]['maxima'][0]
-        for i in range(len(self.yieldoutputs[kernel]['maxima'])-1):
-            if self.yieldoutputs[kernel]['maxima'][i][1] + 5 < self.yieldoutputs[kernel]['maxima'][i+1][1]: #if there is no significant increase in yield, minimise acid equiv
-                self.optimum = self.yieldoutputs[kernel]['maxima'][i+1]
+        self.optimum = self.yieldoutputs[yield_kernel]['maxima'][0]
+        for i in range(len(self.yieldoutputs[yield_kernel]['maxima'])-1):
+            if self.yieldoutputs[yield_kernel]['maxima'][i][1] + 5 < self.yieldoutputs[yield_kernel]['maxima'][i+1][1]: #if there is no significant increase in yield, minimise acid equiv
+                self.optimum = self.yieldoutputs[yield_kernel]['maxima'][i+1]
         
         #find corresponding conversion
-        if self.convoutputs[kernel] != None:
-            convindex = np.where(self.yieldoutputs[kernel]['prediction'] == self.optimum)
-            conv = self.convoutputs[kernel]['prediction'][convindex[0]][0][-1]
+        if self.convoutputs[conv_kernel] != None:
+            convindex = np.where(self.yieldoutputs[yield_kernel]['prediction'] == self.optimum)
+            conv = self.convoutputs[conv_kernel]['prediction'][convindex[0]][0][-1]
             self.optimum = np.append(self.optimum, conv)
         
         return self.optimum
