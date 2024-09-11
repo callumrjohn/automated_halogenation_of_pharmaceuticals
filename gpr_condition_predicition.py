@@ -131,7 +131,7 @@ for label in labels:
     
     ax[0].text(optimum_tfa[0]+0.2, 
             optimum_tfa[1]+4, 
-            str(round(optimum_tfa[0], 1))+' equiv.\n' + str(int(round(optimum_tfa[1], 0))) + "% NMR yield\n"+ str(int(round(compound.pickoptimum(kernel = conv_model)[2], 0))) + "% Conversion", 
+            str(round(optimum_tfa[0], 1))+' equiv.\n' + str(int(round(optimum_tfa[1], 0))) + "% NMR yield\n"+ str(int(round(optimum_tfa[2], 0))) + "% Conversion", 
             color = 'tab:red')
     
    
