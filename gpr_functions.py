@@ -157,8 +157,15 @@ def plot_predicitions(data,  # list of dictionaries
                          fc = colors[color_count], 
                          ec = 'None',
                          )
+        
+        if max(y) > 100:
+            plt.ylim(0, 125)
+
+        else:
+            plt.ylim(0, 100)
+        
         plt.xlim(0, 25)
-        plt.ylim(0, 100)
+        
 
     
 

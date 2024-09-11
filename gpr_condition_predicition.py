@@ -53,7 +53,7 @@ for label in labels:
 
     print("Running predictions for " + label)
 
-    kernels = {'Radial basis function (RBF)': 1.0 * RBF(length_scale=1e0, length_scale_bounds=length_scale_bounds)+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),
+    kernels = {'RBF': 1.0 * RBF(length_scale=1e0, length_scale_bounds=length_scale_bounds)+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),
           'Matern (nu = 3/2)': 1.0 * Matern(length_scale=1e0, length_scale_bounds=length_scale_bounds, nu=3/2)+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),
           'Matern (nu = 5/2)': 1.0 * Matern(length_scale=1e0, length_scale_bounds=length_scale_bounds, nu=5/2)+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),
           #'Rational quadratic (RQ)': 1.0 * RationalQuadratic(length_scale=1e0, length_scale_bounds=length_scale_bounds),+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),
@@ -104,7 +104,7 @@ for label in labels:
     y_exp_c = compound.convvalues
     
 
-    fig, ax = plt.subplots(1,2,figsize=(17, 5), gridspec_kw={'width_ratios': [9,10], 'wspace': 0.3})
+    fig, ax = plt.subplots(1,2,figsize=(17, 5), gridspec_kw={'width_ratios': [1,1], 'wspace': 0.3})
 
     ax[0].plot(x,y, zorder = 3, color = 'tab:blue')
     ax[0].plot(x_c, y_c, zorder = 1, color = 'tab:orange')
@@ -125,7 +125,7 @@ for label in labels:
 
     ax[0].legend(['NMR yield (GPR)', 'Conversion (GPR)','GPR Optimum', 'Isolated yield'], 
             loc='lower right', 
-            bbox_to_anchor=(1, -0.3),
+            bbox_to_anchor=(1.05, -0.3),
             frameon=False,
             fontsize = 8)
     
@@ -135,8 +135,8 @@ for label in labels:
             color = 'tab:red')
     
    
-    ax[0].text(-2.2, -19, "NMR yield - Kernel: "+ compound.best_model_yield() + " + White" + ', Length scale bounds: ' + str(length_scale_bounds), fontsize=8)
-    ax[0].text(-2.2, -23, "Conversion - Kernel: "+ compound.best_model_conv() + " + White" + ', Length scale bounds: ' + str(length_scale_bounds), fontsize=8)
+    ax[0].text(-2.5, -19, "NMR yield - Kernel: "+ compound.best_model_yield() + " + White" + ', Length scale bounds: ' + str(length_scale_bounds), fontsize=8)
+    ax[0].text(-2.5, -23, "Conversion - Kernel: "+ compound.best_model_conv() + " + White" + ', Length scale bounds: ' + str(length_scale_bounds), fontsize=8)
         
 
     iso_yield = compound_exp_yield.loc[label]
@@ -157,7 +157,7 @@ for label in labels:
     ax[1].set_xlabel('Yield/Conversion (%)')
     ax[1].set_xlim(0, 100)
 
-    plt.savefig(destination + "\compound_plots\\" + label + "_plot.png")
+    plt.savefig(destination + "\compound_plots\\" + label + "_plot.png", bbox_inches='tight')
 
 
 
