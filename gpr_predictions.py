@@ -65,6 +65,8 @@ class Halogenation:
             return None
 
 
+
+
     def gprcalculate(self, 
                       kernel, 
                       **kwargs,
@@ -132,16 +134,22 @@ class Halogenation:
             else:
                 self.convoutputs.update({kernelname : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima, 'mae': mae}})
     
+    
+    
     #find the best model for yield and conversion
     def best_model_yield(self):
         bestmodel = min([self.yieldoutputs[kernel]['mae'] for kernel in self.yieldoutputs.keys()])
         bestkernel = [kernel for kernel in self.yieldoutputs.keys() if self.yieldoutputs[kernel]['mae'] == bestmodel]
         return bestkernel[0]
     
+
+
     def best_model_conv(self):
         bestmodel = min([self.convoutputs[kernel]['mae'] for kernel in self.convoutputs.keys()])
         bestkernel = [kernel for kernel in self.convoutputs.keys() if self.convoutputs[kernel]['mae'] == bestmodel]
         return bestkernel[0]
+
+
 
     #pick the optimum 
     def pickoptimum(self,
@@ -157,7 +165,7 @@ class Halogenation:
         
         self.optimum = self.yieldoutputs[yield_kernel]['maxima'][0]
         for i in range(len(self.yieldoutputs[yield_kernel]['maxima'])-1):
-            if self.yieldoutputs[yield_kernel]['maxima'][i][1] + 5 < self.yieldoutputs[yield_kernel]['maxima'][i+1][1]: #if there is no significant increase in yield, minimise acid equiv
+            if self.optimum[1] + 5 < self.yieldoutputs[yield_kernel]['maxima'][i+1][1]: #if there is no significant increase in yield, minimise acid equiv
                 self.optimum = self.yieldoutputs[yield_kernel]['maxima'][i+1]
         
         #find corresponding conversion
