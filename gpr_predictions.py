@@ -103,7 +103,7 @@ class Halogenation:
 
 
 
-    #method to run the GPR model
+    #method to run the GPR model. Integrate into a for loop to run multiple kernels
     def gprcalculate(self, 
                       kernel, 
                       **kwargs,
