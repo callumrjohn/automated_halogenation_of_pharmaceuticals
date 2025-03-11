@@ -7,7 +7,6 @@ import pandas as pd
 import numpy as np
 from sklearn.gaussian_process.kernels import RBF, Matern, RationalQuadratic, ExpSineSquared, WhiteKernel
 from sklearn.preprocessing import StandardScaler, RobustScaler
-from gpr_functions import get_predictions, model_selector, plot_predicitions
 from gpr_predictions import Halogenation
 
 
@@ -18,7 +17,7 @@ conv_csv_path = input("Enter the path to the conversion data: ").strip('"').stri
 
 destination = input("Enter the path to the destination folder: ").strip('"').strip("'")
 
-length_scale_bounds = input("Enter the length scale bounds (in the form lower,upper): ")
+length_scale_bounds = input("Enter the length scale bounds in the form lower,upper: ")
 length_scale_bounds = tuple([float(x) for x in length_scale_bounds.split(',')])
 
 compound_yield_csv = pd.read_csv(yield_csv_path, index_col='Unnamed: 0')
@@ -47,8 +46,13 @@ compound_df = pd.DataFrame(columns=['pred_opt_tfa',
 
                            ])
 
-#chlorination predictions
+# predictions
 labels = compound_yield.index
+print(labels)
+
+gpr_predictions_yield = []
+gpr_predictions_conv = []
+
 for label in labels:
 
     print("Running predictions for " + label)
@@ -96,8 +100,13 @@ for label in labels:
     x = compound.yieldoutputs[yield_model]['prediction'][:,0]
     y = compound.yieldoutputs[yield_model]['prediction'][:,1]
 
+    gpr_predictions_yield.append(y)
+
     x_c = compound.convoutputs[conv_model]['prediction'][:,0]
     y_c = compound.convoutputs[conv_model]['prediction'][:,1]
+    
+    gpr_predictions_conv.append(y_c)
+
 
     x_exp = compound.acidequiv
     y_exp = compound.yieldvalues
@@ -163,3 +172,8 @@ for label in labels:
 
 
 compound_df.to_csv(destination + "\compound_predictions.csv")
+gpr_predictions_yield_df = pd.DataFrame(gpr_predictions_yield, columns = x, index=labels)
+gpr_predictions_conv_df = pd.DataFrame(gpr_predictions_conv, columns = x, index=labels)
+
+gpr_predictions_yield_df.to_csv(destination + "\gpr_predictions_yield.csv")
+gpr_predictions_conv_df.to_csv(destination + "\gpr_predictions_conv.csv")
