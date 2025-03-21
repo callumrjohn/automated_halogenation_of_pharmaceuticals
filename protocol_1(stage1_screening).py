@@ -1,5 +1,4 @@
-from opentrons import simulate
-from opentrons import protocol_api, types
+from opentrons import protocol_api
 
 
 # metadata
@@ -12,41 +11,37 @@ metadata = {
 
 def run(protocol: protocol_api.ProtocolContext):
     
-    # labware
+    # LABWARE
+
+    # Pipette tip racks
     tiprack1 = protocol.load_labware('opentrons_96_tiprack_300ul', 1)
     tiprack2 = protocol.load_labware('opentrons_96_tiprack_300ul', 2)
     tiprack3 = protocol.load_labware('opentrons_96_tiprack_300ul', 3)
     tiprack4 = protocol.load_labware('opentrons_96_tiprack_300ul', 4)
+
+    # Stock solution plates
     stock96 = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 5)
     stock12 = protocol.load_labware('mettlertoledo_12_reservoir_24000ul', 6)
+
+    # Reaction plates
     plate1 = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 7)
     plate2 = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 8)
     plate3 = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 10)
     plate4 = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 11)
-    
     plates = [plate1, plate2, plate3, plate4]
     
-    # stocks
-    substrates = stock96.rows()[0][0:4]
-    tfa = stock12.wells()[0:3]
-    halogens = stock12.wells()[3:7]
-
-
     # pipettes
     multi = protocol.load_instrument('p300_multi_gen2', 'left', tip_racks = [tiprack1, tiprack2, tiprack3, tiprack4])
-    
-    def empty():
-        protocol.max_speeds['X'] = 400
-        protocol.max_speeds['Y'] = 400
-        protocol.max_speeds['Z'] = 400
-
-    def full():
-        protocol.max_speeds['X'] = 300
-        protocol.max_speeds['Y'] = 300
-        protocol.max_speeds['Z'] = 200
 
 
-    
+
+    # STOCK SOLUTIONS
+
+    substrates = stock96.rows()[0][0:4] # Substrate stock solution locations - A1, B1, C1, D1: The first four columns of the stock96 plate
+    tfa = stock12.wells()[0:3] # HFIP and TFA solution locations
+    halogens = stock12.wells()[3:7] # Halogenating reagent locations
+
+
     def premulti(solution):
         protocol.max_speeds['Z'] = 200
         multi.pick_up_tip()
