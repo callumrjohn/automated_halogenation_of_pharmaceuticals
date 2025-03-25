@@ -5,7 +5,7 @@ from opentrons import protocol_api
 metadata = {
     'protocolName': 'protocol_6(stage2_single)',
     'author': 'Callum R. John <crj21@ic.ac.uk>',
-    'description': 'Code to screen a single halogenation',
+    'description': 'Protocol for screening a single halogenation',
     'apiLevel': '2.9'
 }
 

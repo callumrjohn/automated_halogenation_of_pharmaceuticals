@@ -5,7 +5,7 @@ from opentrons import protocol_api
 metadata = {
     'protocolName': 'protocol_3(stage2_0to10_nis_nbs)',
     'author': 'Callum R. John <crj21@ic.ac.uk>',
-    'description': 'Stage 2 screening of brominations and iodinations (0 to 10 TFA equivalents)',
+    'description': 'Protocol for screening of brominations and iodinations (0 to 10 TFA equivalents)',
     'apiLevel': '2.9'
 }
 
@@ -32,6 +32,7 @@ def run(protocol: protocol_api.ProtocolContext):
     # Pipette
     multi = protocol.load_instrument('p300_multi_gen2', 'left', tip_racks = [tiprack1, tiprack2, tiprack3, tiprack4])
     protocol.max_speeds['Z'] = 60
+
 
     # STOCK SOLUTIONS
 
@@ -67,14 +68,14 @@ def run(protocol: protocol_api.ProtocolContext):
 
 
     #counts
-    substrate1_count = [0] # Global variable to count the number of dispenses of the first column of substrate stocks
-    substrate2_count = [0] # Global variable to count the number of dispenses of the second column of substrate stocks
-    substrate3_count = [0] # Global variable to count the number of dispenses of the third column of substrate stocks
-    hfip_count = [0] # Global variable to count the number of dispenses of HFIP
-    tfa_dil_count = [0] # Global variable to count the number of dispenses of TFA solution (0.67 M)
-    tfa_conc_count = [0] # Global variable to count the number of dispenses of TFA solution (3.33 M)
-    nbs_count = [0] # Global variable to count the number of dispenses of NBS
-    nis_count = [0] # Global variable to count the number of dispenses of NIS
+    substrate1_count = [0] # Global variable to count the total number of dispenses of the first column of substrate stocks
+    substrate2_count = [0] # Global variable to count the total number of dispenses of the second column of substrate stocks
+    substrate3_count = [0] # Global variable to count the total number of dispenses of the third column of substrate stocks
+    hfip_count = [0] # Global variable to count the total number of dispenses of HFIP
+    tfa_dil_count = [0] # Global variable to count the total number of dispenses of TFA solution (0.67 M)
+    tfa_conc_count = [0] # Global variable to count the total number of dispenses of TFA solution (3.33 M)
+    nbs_count = [0] # Global variable to count the total number of dispenses of NBS
+    nis_count = [0] # Global variable to count the total number of dispenses of NIS
 
     #totals
     sub_total = 12 # Total number of dispenses for each substrate i.e 12 reactions being prepared with 12 dispenses of substrate
@@ -124,11 +125,13 @@ def run(protocol: protocol_api.ProtocolContext):
         multi.dispense(vol, dis_well.top(), rate = 0.5) # Dispense a specified volume of solution at the top of the destination well at half the default rate (default rate = 94 uL/s)
         multi.blow_out() # Blow out any remaining solution in/on the pipette tip
 
-        count[0] = count[0] + 1 # Add 1 to the dispense count (used to determine when to drop tips and prepare new tips)
+        count[0] = count[0] + 1 # Add 1 to the TIP dispense count (used to determine when to drop tips and prepare new tips)
 
 
     # DISPENSE PROTOCOL
     
+    count = [-1] # Initialise the dispense count to -1 (used to determine when to drop tips and prepare new tips)
+
     # Substrate dispenses for reaction plate 1
     for wells in plate1.rows()[0]:
         liq_hand(100, substrates[0], wells, sub_depth_t0, substrate1_count, sub_total) # Dispense 100 uL of each substrate across a row within the first plate

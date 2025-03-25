@@ -3,7 +3,7 @@ from opentrons import protocol_api
 
 # metadata
 metadata = {
-    'protocolName': 'ptrocol_5(stage2_final_exp)',
+    'protocolName': 'protocol_5(stage2_final_exp)',
     'author': 'Callum R. John <crj21@ic.ac.uk>',
     'description': 'Final halogenation screening',
     'apiLevel': '2.9'
@@ -24,7 +24,6 @@ def run(protocol: protocol_api.ProtocolContext):
     # Reaction plate
     plate = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 3)
 
-    
     # Pipette
     multi = protocol.load_instrument('p300_multi_gen2', 'left', tip_racks = [tiprack1, tiprack2])
     protocol.max_speeds['Z'] = 200
@@ -74,11 +73,6 @@ def run(protocol: protocol_api.ProtocolContext):
 
         count[0] = count[0] + 1 # Add 1 to the dispense count (used to determine when to drop tips and prepare new tips)
 
-    def count_check(): # Reset the tip count and drop tips if used tips are attached
-        if count[0] != 0:
-            multi.drop_tip()
-        count = [-1]
-
 
     # DISPENSE PROTOCOL
 
@@ -89,35 +83,47 @@ def run(protocol: protocol_api.ProtocolContext):
     for wells in plate.rows()[0][:-1]:
         liq_hand(100, stock96['A1'], wells) # Dispense 100 uL of each substrate across the plate
 
-    count_check() # Reset the tip count and drop tips if used tips are attached
+    if count[0] != 0:
+        multi.drop_tip()
+    count = [-1] # Reset the tip count and drop tips if used tips are attached
 
 
     #HFIP dispenses
     for well, vol in hfip_quantities.items():
         liq_hand(vol, stock12['A1'], plate[well]) # Dispense HFIP solution across the plate according to the hfip_quantities dictionary
         
-    count_check() # Reset the tip count and drop tips if used tips are attached
+    if count[0] != 0:
+        multi.drop_tip()
+    count = [-1] # Reset the tip count and drop tips if used tips are attached
     
 
     # TFA dispenses
     for well, vol in tfa_dil_quantities.items():
         liq_hand(vol, stock12['A2'], plate[well]) # Dispense TFA (0.67 M) across the plate according to the tfa_dil_quantities dictionary
 
-    count_check() # Reset the tip count and drop tips if used tips are attached
+    if count[0] != 0:
+        multi.drop_tip()
+    count = [-1] # Reset the tip count and drop tips if used tips are attached
     
     for well, vol in tfa_med_quantities.items():
         liq_hand(vol, stock12['A3'], plate[well]) # Dispense TFA (3.33 M) across the plate according to the tfa_med_quantities dictionary
 
-    count_check() # Reset the tip count and drop tips if used tips are attached
+    if count[0] != 0:
+        multi.drop_tip()
+    count = [-1] # Reset the tip count and drop tips if used tips are attached
 
     for well, vol in tfa_conc_quantities.items():
         liq_hand(vol, stock12['A4'], plate[well]) # Dispense TFA (8.33 M) across the plate according to the tfa_conc_quantities dictionary
 
-    count_check() # Reset the tip count and drop tips if used tips are attached
+    if count[0] != 0:
+        multi.drop_tip()
+    count = [-1] # Reset the tip count and drop tips if used tips are attached
 
 
     #N-X dispenses
     for wells in plate.rows()[0][:-1]:
         liq_hand(40, stock96['A2'], wells) # Dispense 40 uL of each halogenating reagent across the plate
 
-    count_check() # Reset the tip count and drop tips if used tips are attached
+    if count[0] != 0:
+        multi.drop_tip()
+    count = [-1] # Reset the tip count and drop tips if used tips are attached

@@ -5,7 +5,7 @@ from opentrons import protocol_api
 metadata = {
     'protocolName': 'protocol_2(stage2_0to6_chlor)',
     'author': 'Callum R. John <crj21@ic.ac.uk>',
-    'description': 'Stage 2 screening of chlorinations (0-6 TFA equivalents)',
+    'description': 'Protocol for screening of chlorinations (0-6 TFA equivalents)',
     'apiLevel': '2.9'
 }
 
@@ -30,9 +30,9 @@ def run(protocol: protocol_api.ProtocolContext):
     protocol.max_speeds['Y'] = 200
 
 
-
     # STOCK SOLUTIONS
-    # acid_0 - 0.05 M TFA, acid_1 - 0.5 M TFA, acid_2 - 2.0 M TFA
+
+    # CONCENTRATIONS: acid_0 - 0.05 M TFA, acid_1 - 0.5 M TFA, acid_2 - 2.0 M TFA
     acid_no = {0: {'stock': None, 'vol': 0}, # control (no acid)
                2: {'stock': None, 'vol': 0}} # 0 equiv
     acid_0 = {3: {'stock': stock12['A6'], 'vol': 40}} # 0.1 equiv
