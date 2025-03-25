@@ -5,7 +5,7 @@ from opentrons import protocol_api
 metadata = {
     'protocolName': 'protocol_4(stage2_repeats_and_high_acidity)',
     'author': 'Callum R. John <crj21@ic.ac.uk>',
-    'description': 'Stage 2 screening repeats and high TFA',
+    'description': 'HTE screening repeats and high TFA halogenation experiments (15, 25 TFA equivalents)',
     'apiLevel': '2.9'
 }
 

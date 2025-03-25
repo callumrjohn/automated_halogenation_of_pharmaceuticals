@@ -19,10 +19,10 @@ def run(protocol: protocol_api.ProtocolContext):
     
     # Stock solution plates
     stock8 = protocol.load_labware('mettlertoledo_8_reservoir_36000ul', 2) # Substrates
-    stock12 = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 5) # TFA soltutions, HFIP, and halogenating reagent
+    stock12 = protocol.load_labware('mettlertoledo_12_reservoir_24000ul', 5) # TFA soltutions, HFIP, and halogenating reagent
     
     # Reaction plate
-    plate = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 3)
+    plate = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 3) # During preliminary HTE studies, 'analyticalsales_96_wellplate_750ul' was used
 
     # Pipette
     multi = protocol.load_instrument('p300_multi_gen2', 'left', tip_racks = [tiprack1, tiprack2])
