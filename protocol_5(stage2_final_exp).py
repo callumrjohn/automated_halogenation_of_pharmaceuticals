@@ -120,7 +120,7 @@ def run(protocol: protocol_api.ProtocolContext):
     count = [-1] # Reset the tip count and drop tips if used tips are attached
 
 
-    #N-X dispenses
+    # Halogenating reagent dispenses
     for wells in plate.rows()[0][:-1]:
         liq_hand(40, stock96['A2'], wells) # Dispense 40 uL of each halogenating reagent across the plate
 
