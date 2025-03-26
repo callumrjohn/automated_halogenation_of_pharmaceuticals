@@ -164,7 +164,7 @@ class Halogenation:
     
     
     
-    #select the best model for yield and conversion (ie the best kernel)
+    # Methods to select the best model for yield and conversion (ie the lowest mean absolute error)
     def best_model_yield(self):
         bestmodel = min([self.yieldoutputs[kernel]['mae'] for kernel in self.yieldoutputs.keys()]) #find the kernel with the lowest mean absolute error
         bestkernel = [kernel for kernel in self.yieldoutputs.keys() if self.yieldoutputs[kernel]['mae'] == bestmodel] #find the kernel name
@@ -177,31 +177,57 @@ class Halogenation:
 
 
 
-    #pick the optimum condnitions for the reaction
-    def pickoptimum(self,
-                    **kwargs,
-                    ):
-        
-        # Ensure the GPR model has been run before picking the optimum conditions
-        try:
-            yield_kernel = kwargs.get('yield_kernel', list(self.yieldoutputs.keys())[0])
-        except Exception: 
+    # Pick the optimum acid equiv with predicted yield and conversion values for specified kernels
+    def pickoptimum(self, **kwargs):
+
+        yield_kernel = kwargs.get('yield_kernel') # Use best_model_yield() for optimum across kernels screened (yield)
+        conv_kernel = kwargs.get('conv_kernel') # Use best_model_conv() for optimum across kernels screened (conversion)
+
+        # If no kernel is specified, use the first kernel in each dictionary
+        if yield_kernel is None:
             try:
-                conv_kernel = kwargs.get('conv_kernel', list(self.convoutputs.keys())[0])
-            except Exception:
-                raise ValueError("Use self.gprcalculate() first to generate predictions") #raise an error if the GPR model has not been run
-        
-        
-        self.optimum = self.yieldoutputs[yield_kernel]['maxima'][0] # Initialise the optimum value as the first maxima (ie the min acid equiv value)
-        for i in range(len(self.yieldoutputs[yield_kernel]['maxima'])-1): # Loop through the maxima found in the acid/yield curve
-            if self.optimum[1] + 5 < self.yieldoutputs[yield_kernel]['maxima'][i+1][1]: # For each maxima at increasing TFA quantities, if there is a significant increase in yield (+5%) for subsiquent maxima.... 
-                self.optimum = self.yieldoutputs[yield_kernel]['maxima'][i+1] # Chainge the optimum value to the acid equiv value at this maxima
-        
-        # Find corresponding conversion to the YIELD maxima
-        if self.convoutputs[conv_kernel] != None:
-            convindex = np.where(self.yieldoutputs[yield_kernel]['prediction'] == self.optimum)
-            conv = self.convoutputs[conv_kernel]['prediction'][convindex[0]][0][-1]
-            self.optimum = np.append(self.optimum, conv)
-        
+                print("No kernel specified for yield dataset. Defaulting to:" + list(self.yieldoutputs.keys())[0])
+                yield_kernel = list(self.yieldoutputs.keys())[0]
+            except (KeyError, IndexError):
+                yield_kernel = None
+
+        if conv_kernel is None:
+            try:
+                print("No kernel specified for conversion dataset. Defaulting to:" + list(self.yieldoutputs.keys())[0])
+                conv_kernel = list(self.convoutputs.keys())[0]
+            except (KeyError, IndexError):
+                conv_kernel = None
+
+        # Raise error if neither output is available
+        if yield_kernel is None and conv_kernel is None:
+            raise ValueError("Use self.gprcalculate() first to generate predictions.")
+
+        if yield_kernel:
+            # Select best yield maxima (same as before)
+            self.optimum = self.yieldoutputs[yield_kernel]['maxima'][0] # Start with the first datapoint in the "maxima" array (0 TFA equiv)
+            for i in range(len(self.yieldoutputs[yield_kernel]['maxima']) - 1): # Loop through the maxima to find the optimum acid equiv
+                next_max = self.yieldoutputs[yield_kernel]['maxima'][i + 1]
+                if self.optimum[1] + 5 < next_max[1]: # If the yield increases by more than 5% between maxima, update the optimum
+                    self.optimum = next_max
+
+            # Append the conversion corresponding to the optimum yield
+            if conv_kernel and self.convoutputs.get(conv_kernel) is not None:
+                try:
+                    acid_values = self.yieldoutputs[yield_kernel]['prediction'][:, 0]
+                    match_idx = np.where(acid_values == self.optimum[0])[0] # Find the index of the optimum acid equiv in the yield dataset
+                    if len(match_idx) > 0:
+                        conv_val = self.convoutputs[conv_kernel]['prediction'][match_idx[0]][-1] # Extract the conversion value at the same index
+                        self.optimum = np.append(self.optimum, conv_val) # Append the conversion value to the optimum array
+                except Exception as e:
+                    print("Warning: couldn't extract conversion value:", e) # Print a warning if the conversion value can't be extracted
+
+        elif conv_kernel:
+            # If there is no yield, pick optimum based on conversion maxima
+            self.optimum = self.convoutputs[conv_kernel]['maxima'][0] # Start with the first datapoint in the "maxima" array (0 TFA equiv)
+            for i in range(len(self.convoutputs[conv_kernel]['maxima']) - 1): # Loop through the maxima to find the optimum acid equiv
+                next_max = self.convoutputs[conv_kernel]['maxima'][i + 1]
+                if self.optimum[1] + 5 < next_max[1]: # If the conversion increases by more than 5% between maxima, update the optimum
+                    self.optimum = next_max
+
         return self.optimum # Return the optimum acid equiv with predicted yield and conversion values
 

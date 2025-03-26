@@ -5,15 +5,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.gaussian_process.kernels import RBF, Matern, RationalQuadratic, ExpSineSquared, WhiteKernel
 from gpr_predictions import Halogenation
-
 import warnings
+
 warnings.filterwarnings("ignore") # Ignore convergence warnings when running the GPR models
 
 
 # load data and set up parameters based on user input
 
 yield_csv_path = input("Enter the path to the yield data: ").strip()
-conv_csv_path = input("Enter the path to the conversion data: ").strip
+conv_csv_path = input("Enter the path to the conversion data: ").strip()
+
+yield_csv_path = yield_csv_path.strip('"').strip("'")  # Remove extra quotes if present
+conv_csv_path = conv_csv_path.strip('"').strip("'")  # Remove extra quotes if present
 
 destination = input("Enter the path to the destination folder: ").strip()
 
