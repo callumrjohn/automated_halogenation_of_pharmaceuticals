@@ -15,10 +15,10 @@ warnings.filterwarnings("ignore") # Ignore convergence warnings when running the
 yield_csv_path = input("Enter the path to the yield data: ").strip()
 conv_csv_path = input("Enter the path to the conversion data: ").strip()
 
-yield_csv_path = yield_csv_path.strip('"').strip("'")  # Remove extra quotes if present
+yield_csv_path = yield_csv_path.strip('"').strip("'")  # Remove extra quotes from path if present
 conv_csv_path = conv_csv_path.strip('"').strip("'")  # Remove extra quotes if present
 
-destination = input("Enter the path to the destination folder: ").strip()
+destination = input("Enter the path to the destination folder: ").strip() # Folder to store folder of plots and csv files
 
 length_scale_bounds = input("Enter the length scale bounds in the form lower,upper (default: 0.1,10): ").strip()
 length_scale_bounds = tuple([float(x) for x in length_scale_bounds.split(',')])
@@ -48,17 +48,17 @@ if not os.path.exists(os.path.join(destination, "compound_plots")): # Create a f
     os.mkdir(os.path.join(destination, "compound_plots"))
 
 
-#define kernels
+# Kernels for screening
 kernels = {'RBF': 1.0 * RBF(length_scale=1e0, length_scale_bounds=length_scale_bounds)+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),
           'Matern (nu = 3/2)': 1.0 * Matern(length_scale=1e0, length_scale_bounds=length_scale_bounds, nu=3/2)+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),
           'Matern (nu = 5/2)': 1.0 * Matern(length_scale=1e0, length_scale_bounds=length_scale_bounds, nu=5/2)+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),
           #'Rational quadratic (RQ)': 1.0 * RationalQuadratic(length_scale=1e0, length_scale_bounds=length_scale_bounds),+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),
           #'Exponential sine squared (ESS)': 1.0 * ExpSineSquared(length_scale=1e0, length_scale_bounds=length_scale_bounds),, periodicity=1.0, periodicity_bounds=length_scale_bounds),+ WhiteKernel(noise_level=1e0, noise_level_bounds=length_scale_bounds),),
-          #UNCOMMENT THE ABOVE LINES TO USE OTHER KERNELS (see README for more information)
+          #UNCOMMENT THE ABOVE LINES TO USE OTHER KERNELS. Tended to result in overfitting for many of the datasets used in this study
           }
 
 
-# initialise dataframe to store predictions
+# Initialise dataframe to store predictions
 compound_df = pd.DataFrame(columns=['pred_opt_tfa', 
                             'pred_opt_yield',
                             'pred_opt_conv',
@@ -69,11 +69,12 @@ compound_df = pd.DataFrame(columns=['pred_opt_tfa',
                             'length_scale_bounds',
                            ])
 
-# initialise lists to store GPR predictions for csv export
+# Initialise lists to store GPR predictions for csv export
 gpr_predictions_yield = []
 gpr_predictions_conv = []
 
-# predictions
+
+# PREDICTIONS AND PLOTTING
 substrates = compound_yield.index
 
 for label in substrates: # Iterate through the substrates, run predictions and plot the data
@@ -101,7 +102,7 @@ for label in substrates: # Iterate through the substrates, run predictions and p
     #print(optimum_tfa)
 
     # append GPR data to dataframe
-    compound_df.loc[label] = [optimum_tfa[0], # optimum TFA
+    compound_df.loc[label] = [optimum_tfa[0], # optimum TFA amount
                               optimum_tfa[1], # optimum yield
                               optimum_tfa[2], # optimum conversion
                               yield_model, # best kernel (lowest MAE) for yield
@@ -111,8 +112,9 @@ for label in substrates: # Iterate through the substrates, run predictions and p
                               length_scale_bounds] # length scale bounds
 
     
-    # PLOT THE DATA
 
+
+    # PLOT THE DATA
     # GPR predictions
     x = compound.yieldoutputs[yield_model]['prediction'][:,0]
     y = compound.yieldoutputs[yield_model]['prediction'][:,1]
@@ -127,7 +129,6 @@ for label in substrates: # Iterate through the substrates, run predictions and p
     x_exp = compound.acidequiv
     y_exp = compound.yieldvalues
     y_exp_c = compound.convvalues
-
 
     # plot a graph of the GPR predictions and experimental yield and conversion data for each halogenation reactions, inlcuding the optimum TFA
     fig, ax = plt.subplots(1,2,figsize=(17, 5), gridspec_kw={'width_ratios': [1,1], 'wspace': 0.3})
@@ -150,7 +151,7 @@ for label in substrates: # Iterate through the substrates, run predictions and p
     ax[0].set_xlabel('TFA equivalents')
     ax[0].set_ylabel('Yield/Conversion (%)')
 
-    ax[0].legend(['NMR yield (GPR)', 'Conversion (GPR)','GPR Optimum', 'Isolated yield'], 
+    ax[0].legend(['NMR yield (GPR)', 'Conversion (GPR)','GPR Optimum', 'Scale-up conversion'], 
             loc='lower right', 
             bbox_to_anchor=(1.05, -0.3),
             frameon=False,
