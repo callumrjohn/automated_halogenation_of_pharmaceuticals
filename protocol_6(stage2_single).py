@@ -109,6 +109,6 @@ def run(protocol: protocol_api.ProtocolContext):
     count_check(single) # Reset the tip count and drop tips if used tips are attached
 
     # Halogenating reagent dispense
-    liq_hand(multi, 100, stock12['A2'], plate['A1'])
+    liq_hand(multi, 40, stock12['A2'], plate['A1'])
 
     count_check(multi) # Reset the tip count and drop tips if used tips are attached
