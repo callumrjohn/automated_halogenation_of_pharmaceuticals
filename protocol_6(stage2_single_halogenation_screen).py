@@ -41,7 +41,7 @@ def run(protocol: protocol_api.ProtocolContext):
 
     # DISPENSE FUNCTIONS
 
-    def preppipette(pipette, solution): # Procedure to "prepare" each tip before use, ensuring accurate and consistent handling on solutions
+    def preppipette(pipette, solution): # Procedure to "prepare" each tip before use, ensuring accurate and consistent handling of solutions
         pipette.pick_up_tip() # Pick up pipette tips
 
         # PRE-WETTING OF TIP
@@ -66,7 +66,7 @@ def run(protocol: protocol_api.ProtocolContext):
             count[0] = 0
             preppipette(pipette, asp_well)
                     
-        pipette.aspirate(vol, asp_well, rate = 0.5) # Aspirate a specified volume of solution from a source well at a specified height at half the default rate (default rate = 94 uL/s)
+        pipette.aspirate(vol, asp_well, rate = 0.5) # Aspirate a specified volume of solution from a source well at half the default rate (default rate = 94 uL/s)
         pipette.touch_tip() # Touch the pipette tip to the inside wall of the stock well to remove residual solution
         pipette.dispense(vol, dis_well.top(), rate = 0.5) # Dispense a specified volume of solution at the top of the destination well at half the default rate (default rate = 94 uL/s)
         pipette.blow_out() # Blow out any remaining solution in the pipette tip
@@ -86,7 +86,7 @@ def run(protocol: protocol_api.ProtocolContext):
 
     count_check(multi) # Reset the tip count and drop tips if used tips are attached
 
-    #HFIP dispenses
+    # HFIP dispenses
     for well, vol in hfip_quantities.items():
         liq_hand(single, vol, stock96['A1'], plate[well]) # Dispense HFIP solution across the plate according to the hfip_quantities dictionary
         
