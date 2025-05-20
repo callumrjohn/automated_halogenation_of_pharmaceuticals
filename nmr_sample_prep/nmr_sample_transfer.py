@@ -20,7 +20,7 @@ def run(protocol: protocol_api.ProtocolContext):
     plate = protocol.load_labware('2mlcollection_96_wellplate_2000ul', 5)
 
     # Tube rack with HT 5 mm NMR tubes
-    rack = protocol.load_labware('nmr_96_tuberack_1000ul', 6) # 3D printed tube rack. See labware folder in repo for .stl files
+    rack = protocol.load_labware('nmr_96_tuberack_1000ul', 6) # 3D printed tube rack. See custom_labware folder in repo for .stl files
 
     # Pipette
     multi = protocol.load_instrument('p300_multi_gen2', 'left', tip_racks = [tiprack1])
@@ -34,14 +34,14 @@ def run(protocol: protocol_api.ProtocolContext):
 
     for well, tube in zip(plate.rows()[0], rack.rows()[0]):
         multi.pick_up_tip()
-        multi.mix(10, 150, location = well.bottom(2), rate = 2) # Mix the ssample before transfer to ensure homogeneity
+        multi.mix(10, 150, location = well.bottom(2), rate = 2) # Mix the sample before transfer to ensure homogeneity
         
-        dispense_point = tube.top().move(types.Point(x=3.8/2, y=0, z=-3)) # 
+        dispense_point = tube.top().move(types.Point(x=3.8/2, y=0, z=-3)) # Define the dispense point as 3 mm below the top of the tube and against the wall (3.8 mm diameter well of a 5 mm NMR tube)
         for i in range(3):
 
-            multi.aspirate(250, well.bottom(sample_depth_t0-sample_depth_t0*(i+1)/3))
+            multi.aspirate(250, well.bottom(sample_depth_t0-sample_depth_t0*(i+1)/3)) 
             multi.move_to(tube.top())
-            multi.dispense(250, dispense_point)
+            multi.dispense(250, dispense_point) # Dispense 250 uL of sample into the tube at the defined dispense point (important to prevent air-lock)
             multi.blow_out()
         
-        multi.drop_tip()
+        multi.drop_tip() # Dispose of tips after sample transfer
