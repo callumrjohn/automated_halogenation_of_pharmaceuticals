@@ -182,6 +182,7 @@ class Halogenation:
 
         yield_kernel = kwargs.get('yield_kernel') # Use best_model_yield() for optimum across kernels screened (yield)
         conv_kernel = kwargs.get('conv_kernel') # Use best_model_conv() for optimum across kernels screened (conversion)
+        min_improvement = kwargs.get('min_improvement', 5) # Default to 5% if not specified
 
         # If no kernel is specified, use the first kernel in each dictionary
         if yield_kernel is None:
@@ -226,7 +227,7 @@ class Halogenation:
             self.optimum = self.convoutputs[conv_kernel]['maxima'][0] # Start with the first datapoint in the "maxima" array (0 TFA equiv)
             for i in range(len(self.convoutputs[conv_kernel]['maxima']) - 1): # Loop through the maxima to find the optimum acid equiv
                 next_max = self.convoutputs[conv_kernel]['maxima'][i + 1]
-                if self.optimum[1] + 5 < next_max[1]: # If the conversion increases by more than 5% between maxima, update the optimum
+                if self.optimum[1] + min_improvement < next_max[1]: # If the conversion increases by more than min_improvement between maxima, update the optimum
                     self.optimum = next_max
 
         return self.optimum # Return the optimum acid equiv with predicted yield and conversion values

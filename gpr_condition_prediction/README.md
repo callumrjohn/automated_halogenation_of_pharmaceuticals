@@ -189,7 +189,8 @@ Picks the optimum conditions from the stored predictions, preferring the highest
 
 - **Keyword arguments:**  
   - `yield_kernel: Optional[str]` — kernel to use for yield (default: first key in `yieldoutputs`)  
-  - `conv_kernel: Optional[str]` — kernel to use for conversion (default: first key in `convoutputs`)  
+  - `conv_kernel: Optional[str]` — kernel to use for conversion (default: first key in `convoutputs`)
+  - `min_improvement` — minimum increase (in response units) required to define the next peak as the new optimum (default: 5).
 
 - **Returns:**  
   - If yield used: `np.array([acid_equiv, predicted_yield])`  
@@ -201,5 +202,5 @@ Picks the optimum conditions from the stored predictions, preferring the highest
 
 - **Behavior details:**  
   - Starts at the first detected “maximum” (includes grid endpoints).  
-  - Moves to the next peak only if its response exceeds the current by >5 units.  
+  - Moves to the next peak only if its response exceeds the current by the specified number of units.  
   - For conversion appending, it looks up the same acid equiv index on the conversion prediction grid.  
