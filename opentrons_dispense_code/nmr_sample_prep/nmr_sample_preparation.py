@@ -3,7 +3,7 @@ from opentrons import protocol_api
 
 # metadata
 metadata = {
-    'protocolName': 'nmr_sample_transfer',
+    'protocolName': 'nmr_sample_preparation',
     'author': 'Callum R. John <crj21@ic.ac.uk>',
     'description': 'Protocol for preparing DMSO-d6 NMR samples from crude residues within a 96-well reaction plate',
     'apiLevel': '2.9'
