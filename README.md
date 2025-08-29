@@ -43,7 +43,7 @@ If you use this code or data, please cite:
   XXXXX
 
 - **Code (this repository):**  
-  Automated halogenation of pharmaceuticals, commit/tag: , URL: https://github.com/callumrjohn/automated_halogenation_of_pharmaceuticals 
+  Automated halogenation of pharmaceuticals, URL: https://github.com/callumrjohn/automated_halogenation_of_pharmaceuticals 
 
 ---
 
