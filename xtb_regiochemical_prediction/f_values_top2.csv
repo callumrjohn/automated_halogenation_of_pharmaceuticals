@@ -1,0 +1,75 @@
+descriptor,f_value
+softness-_ch_max,0.9130434782608695
+fukui-_ch_max,0.9130434782608695
+Nu_Nucleophil._ch_max,0.9130434782608695
+p proportion_ch_max,0.7391304347826086
+Partial charge_ch_min,0.7391304347826086
+Disp. coeff. C6_ch_max,0.6956521739130435
+Mult. descrip._ch_min,0.6956521739130435
+Polariz. alpha_ch_max,0.6956521739130435
+dual descrip._ch_min,0.6956521739130435
+fukui+_ch_min,0.6521739130434783
+Rel. electrophilicity_ch_min,0.6521739130434783
+GC Dual Descrip._ch_min,0.6521739130434783
+Nu_Electrophil._ch_min,0.6521739130434783
+Electrophil._ch_min,0.6521739130434783
+SASA_ch_min,0.6521739130434783
+softness+_ch_min,0.6086956521739131
+Rel. nucleophilicity_ch_max,0.6086956521739131
+fukui0_ch_max,0.6086956521739131
+softness0_ch_max,0.6086956521739131
+FOD d proportion_ch_min,0.6086956521739131
+d proportion_ch_min,0.6086956521739131
+Cone angle_ch_min,0.6086956521739131
+Nucleophil._ch_min,0.6086956521739131
+Radical attack_ch_max,0.6086956521739131
+FOD s proportion_ch_min,0.6086956521739131
+Buried volume_ch_max,0.6086956521739131
+Solid angle_ch_min,0.6086956521739131
+Nu_Radical attack_ch_max,0.6086956521739131
+s proportion_ch_min,0.6086956521739131
+Born radii_ch_min,0.5652173913043478
+Coord. numbers_ch_min,0.5652173913043478
+Dispersion_ch_max,0.5652173913043478
+Pyramidalization_ch_max,0.5217391304347826
+Born radii_ch_max,0.5217391304347826
+SASA_ch_max,0.5217391304347826
+FOD_ch_max,0.5217391304347826
+FOD p proportion_ch_max,0.5217391304347826
+Pyramidaliz. volume_ch_max,0.5217391304347826
+softness0_ch_min,0.4782608695652174
+Nu_Radical attack_ch_min,0.4782608695652174
+FOD p proportion_ch_min,0.4782608695652174
+fukui0_ch_min,0.4782608695652174
+Dispersion_ch_min,0.4782608695652174
+Radical attack_ch_min,0.4782608695652174
+FOD_ch_min,0.4782608695652174
+H bond with H2O_ch_min,0.4782608695652174
+s proportion_ch_max,0.43478260869565216
+Pyramidaliz. volume_ch_min,0.43478260869565216
+Pyramidalization_ch_min,0.43478260869565216
+H bond with H2O_ch_max,0.43478260869565216
+Buried volume_ch_min,0.391304347826087
+FOD d proportion_ch_max,0.34782608695652173
+Nucleophil._ch_max,0.34782608695652173
+d proportion_ch_max,0.34782608695652173
+Coord. numbers_ch_max,0.34782608695652173
+FOD s proportion_ch_max,0.34782608695652173
+Nu_Electrophil._ch_max,0.30434782608695654
+Polariz. alpha_ch_min,0.30434782608695654
+Solid angle_ch_max,0.30434782608695654
+Cone angle_ch_max,0.30434782608695654
+p proportion_ch_min,0.30434782608695654
+Disp. coeff. C6_ch_min,0.30434782608695654
+Electrophil._ch_max,0.30434782608695654
+fukui+_ch_max,0.30434782608695654
+softness+_ch_max,0.2608695652173913
+softness-_ch_min,0.2608695652173913
+Nu_Nucleophil._ch_min,0.2608695652173913
+Mult. descrip._ch_max,0.2608695652173913
+fukui-_ch_min,0.2608695652173913
+Partial charge_ch_max,0.2608695652173913
+GC Dual Descrip._ch_max,0.21739130434782608
+Rel. electrophilicity_ch_max,0.21739130434782608
+Rel. nucleophilicity_ch_min,0.21739130434782608
+dual descrip._ch_max,0.21739130434782608
