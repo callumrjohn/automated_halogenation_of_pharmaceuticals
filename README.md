@@ -43,7 +43,7 @@ If you use this code or data, please cite:
   XXXXX
 
 - **Code (this repository):**  
-  Automated halogenation of pharmaceuticals, commit/tag: _TODO_, URL: https://github.com/callumrjohn/automated_halogenation_of_pharmaceuticals 
+  Automated halogenation of pharmaceuticals, commit/tag: , URL: https://github.com/callumrjohn/automated_halogenation_of_pharmaceuticals 
 
 ---
 
@@ -56,6 +56,6 @@ This project is licensed under the [BSD 3-Clause License](./LICENSE).
 ## Contact
 
 For questions or issues, please open a GitHub issue or contact:  
-**Callum R John:** c.john21@imperial.co.uk
-**Rebecca L Greenaway:** r.greenaway@imperial.ac.uk
-**James A Bull:** j.bull@imperial.ac.uk
+- **Callum R John:** c.john21@imperial.co.uk (_lead author_)
+- **Rebecca L Greenaway:** r.greenaway@imperial.ac.uk (_corresponding author_)
+- **James A Bull:** j.bull@imperial.ac.uk (_corresponding author_)
