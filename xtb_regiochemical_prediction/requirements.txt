@@ -1,7 +1,5 @@
 numpy
 pandas
-sklearn
-scipy
 aqme
 openbabel
 rdkit
