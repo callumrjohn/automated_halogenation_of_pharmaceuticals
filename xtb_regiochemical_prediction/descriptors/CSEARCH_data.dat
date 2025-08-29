@@ -1,0 +1,211 @@
+AQME v 1.7.0 2025/05/15 15:57:49 
+Citation: AQME v 1.7.0, Alegre-Requena, J. V.; Sowndarya, S.; Perez-Soto, R.; Alturaifi, T.; Paton, R. AQME: Automated Quantum Mechanical Environments for Researchers and Educators. Wiley Interdiscip. Rev. Comput. Mol. Sci. 2023, DOI: 10.1002/wcms.1663.
+
+
+x  WARNING! AQME does not support quiral N atoms in SMILES strings (N@@ or N@). These atoms were replaced by N in the SMILES: O[C@@H]([C@@H]1[N@@](CC2)C[C@H](CC)[C@@H]2C1)C3=CC=NC4=C3C=C(OC)C=C4.
+
+x  WARNING! AQME does not support quiral N atoms in SMILES strings (N@@ or N@). These atoms were replaced by N in the SMILES: O[C@@H]([C@@H]1[N@@](CC2)C[C@H](C=C)[C@@H]2C1)C3=CC=NC4=C3C=C(OC)C=C4.
+
+Starting CSEARCH with 31 job(s) (SDF, XYZ, CSV, etc. files might contain multiple jobs/structures inside)
+
+
+   ----- Bifonazole -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Boscalid -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Caffeine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Camptothecin -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Cimetadine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Ciprofloxacin -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+o  Selecting 25 conformers using a combination of energies and Butina RMS-based clustering. Users might disable this option with --auto_cluster False.
+
+   ----- Cladribine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+o  Selecting 25 conformers using a combination of energies and Butina RMS-based clustering. Users might disable this option with --auto_cluster False.
+
+   ----- Clotrimazole -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Colchicine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Etodolac -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Griseofulvin -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Hydroquinine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Hydroxychloroquine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Ibuprofen -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Indomethacin -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Ketanserin -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Lamivudine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Lidocaine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Mizolastine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Nevirapine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Omeprazole -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Palbociclib -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+o  Selecting 25 conformers using a combination of energies and Butina RMS-based clustering. Users might disable this option with --auto_cluster False.
+
+   ----- Paracetamol -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Quinine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Ribavirin -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+o  Selecting 25 conformers using a combination of energies and Butina RMS-based clustering. Users might disable this option with --auto_cluster False.
+
+   ----- Risperidone -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+o  Selecting 25 conformers using a combination of energies and Butina RMS-based clustering. Users might disable this option with --auto_cluster False.
+
+   ----- Ritonavir -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Salicin -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Tetracycline -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+   ----- Vardenafil -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+o  Selecting 25 conformers using a combination of energies and Butina RMS-based clustering. Users might disable this option with --auto_cluster False.
+
+   ----- Yohimbine -----
+
+o  Starting RDKit conformer sampling
+
+o  Applying filters to initial conformers
+
+Time CSEARCH: 401.0 seconds
+

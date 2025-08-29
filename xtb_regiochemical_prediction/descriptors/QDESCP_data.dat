@@ -1,0 +1,971 @@
+AQME v 1.7.0 2025/05/15 15:57:49 
+Citation: AQME v 1.7.0, Alegre-Requena, J. V.; Sowndarya, S.; Perez-Soto, R.; Alturaifi, T.; Paton, R. AQME: Automated Quantum Mechanical Environments for Researchers and Educators. Wiley Interdiscip. Rev. Comput. Mol. Sci. 2023, DOI: 10.1002/wcms.1663.
+
+xTB version used: 6.7.1
+
+
+Starting QDESCP-xtb with 31 job(s)
+
+
+
+   ----- Caffeine_rdkit -----
+
+
+   ----- Ciprofloxacin_rdkit -----
+
+
+   ----- Lidocaine_rdkit -----
+
+
+   ----- Mizolastine_rdkit -----
+
+
+   ----- Salicin_rdkit -----
+
+
+   ----- Palbociclib_rdkit -----
+
+
+   ----- Hydroxychloroquine_rdkit -----
+
+
+   ----- Colchicine_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Ritonavir_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Lamivudine_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Vardenafil_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Boscalid_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Tetracycline_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Camptothecin_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Ribavirin_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Nevirapine_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Etodolac_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Hydroquinine_rdkit -----
+
+o  Running xTB and collecting properties
+
+
+   ----- Cimetadine_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Cladribine_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Risperidone_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Indomethacin_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Omeprazole_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Clotrimazole_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Ketanserin_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Ibuprofen_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Paracetamol_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Quinine_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Griseofulvin_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Bifonazole_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+
+   ----- Yohimbine_rdkit -----
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running xTB and collecting properties
+
+o  Running RDKit and collecting molecular properties
+o  The QDESCP_denovo_descriptors.csv, QDESCP_interpret_descriptors.csv and QDESCP_full_descriptors.csv files containing Boltzmann weighted xTB, Morfeus and RDKit descriptors were created in /rds/general/user/hgt20/home/callum
+
+Time QDESCP: 2160.96 seconds
+
