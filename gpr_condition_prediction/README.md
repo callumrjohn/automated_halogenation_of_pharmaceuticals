@@ -63,7 +63,7 @@ data = np.column_stack((X, y))
 h = Halogenation('Substrate', 'Reagent', data)
 
 # Define kernel for use with the GPR model
-kernel = 1.0 * RBF(length_scale=1e0, length_scale_bounds=ls_bounds)
+kernel = 1.0 * RBF(length_scale=1e0, length_scale_bounds=(1e-1, 1e1))
 
 # Run the GPR model and interpolate the data. Multiple kernels can be run with data stored within the class if required
 h.gprcalculate(kernel)
