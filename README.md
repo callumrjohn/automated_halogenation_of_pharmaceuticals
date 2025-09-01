@@ -14,11 +14,11 @@ This code accompanies:
 
 ## Table of Contents
 
-- **gpr_condition_predicition:** Code used to determine optimum conditions through GPR modelling of the HTE stage 2 screening data described in the accompanying publication with results.
-- **opentrons_dispense_code:** Opentrons OT-2 `.py` dispense protocols, 3D printing files, and `.json` custom labware definations used to prepare reactions and analytical samples for the accompanying publication.
-- **xtb_regiochemical_prediction:** Code used to generate xTB descriptors of the scope investigated in the accompanying publication and determine a method for regiochemical predicition.
-- **LICENCE:** License information for this repository (BSD-3-Clause).
--**README.md:** This file.
+- `/gpr_condition_predicition`**:** Code used to determine optimum conditions through GPR modelling of the HTE stage 2 screening data described in the accompanying publication with results.
+- `/opentrons_dispense_code`**:** Opentrons OT-2 `.py` dispense protocols, 3D printing files, and `.json` custom labware definations used to prepare reactions and analytical samples for the accompanying publication.
+- `/xtb_regiochemical_prediction`**:** Code used to generate xTB descriptors of the scope investigated in the accompanying publication and determine a method for regiochemical predicition.
+- `LICENCE`**:** License information for this repository (BSD-3-Clause).
+- `README.md`**:** This file.
 
 ---
 
