@@ -9,8 +9,8 @@ This code accompanies:
 - **Title:** An automated platform for tailored late-stage halogenation of pharmaceuticals
 - **Authors:** **Callum R. John**, Eric Tan, Callum S. Begg, Andrew J. P. White, Peter Buijnsters, Jesús Alcázar, Alex M. Ganose, Rebecca L. Greenaway, and James A. Bull  
 - **Journal / Year:** XXXXXX 
-- **DOI:**  10.XXXX/XXXX_  
-- **Preprint:** XXXXXX
+- **DOI:**  10.26434/chemrxiv.15000393/v1 (_preprint_) 
+- **Preprint:** _ChemRxiv_, 2026, https://doi.org/10.26434/chemrxiv.15000393/v1
 
 ## Table of Contents
 
@@ -40,7 +40,7 @@ Python **3.9+** is recommended. Individual requirements files are provided in su
 If you use this code or data, please cite:
 
 - **Primary citation (paper):**  
-  XXXXX
+  C.R. John, E. Tan, C.S. Begg, A.J.P White, P.J.J.A Buijnsters, J. Alcázar, A.M. Ganose, R.L Greenaway and J.A Bull, _ChemRxiv_, 2026, https://doi.org/10.26434/chemrxiv.15000393/v1
 
 - **Code (this repository):**  
   Automated halogenation of pharmaceuticals, URL: https://github.com/callumrjohn/automated_halogenation_of_pharmaceuticals 
