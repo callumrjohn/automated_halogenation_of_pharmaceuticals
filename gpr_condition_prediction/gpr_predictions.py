@@ -130,8 +130,8 @@ class Halogenation:
         
             y_pred, y_pred_std = pipe.predict(x, return_std=True) #predict the yield/ conversion values for all 1000 x values with standard deviation for each datapoint
 
-            model_pred = np.column_stack((x, y_pred))
-            model_stdev = np.column_stack((x, y_pred_std))
+            model_pred = np.column_stack((x, y_pred, y_pred_std)) # Combine the x values, predicted yield/ conversion values, and standard deviation into a single array
+            #model_stdev = np.column_stack((x, y_pred_std))
 
             # Peak-picking
             peak_index, _ = find_peaks(model_pred[:,1].ravel(), height = height) # Use signal processing to find the peaks in the acid equiv vs yield curve above the specified height. Returns indexes of the maxima
@@ -158,9 +158,15 @@ class Halogenation:
 
             # Store the model predictions, standard deviations, maxima, and mean absolute error in dictionaries
             if (dset == 'yield' or dset == 'both') and i == 0:
-                self.yieldoutputs.update({kernelname : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima, 'mae': mae}})
+                self.yieldoutputs.update({kernelname : {'prediction': model_pred, 
+                                                        #'stdevs': model_stdev, 
+                                                        'maxima': maxima, 
+                                                        'mae': mae}})
             else:
-                self.convoutputs.update({kernelname : {'prediction': model_pred, 'stdevs': model_stdev, 'maxima': maxima, 'mae': mae}})
+                self.convoutputs.update({kernelname : {'prediction': model_pred, 
+                                                       #'stdevs': model_stdev, 
+                                                       'maxima': maxima, 
+                                                       'mae': mae}})
     
     
     
@@ -217,7 +223,7 @@ class Halogenation:
                     acid_values = self.yieldoutputs[yield_kernel]['prediction'][:, 0]
                     match_idx = np.where(acid_values == self.optimum[0])[0] # Find the index of the optimum acid equiv in the yield dataset
                     if len(match_idx) > 0:
-                        conv_val = self.convoutputs[conv_kernel]['prediction'][match_idx[0]][-1] # Extract the conversion value at the same index
+                        conv_val = self.convoutputs[conv_kernel]['prediction'][match_idx[0]][-2:] # Extract the conversion value at the same index
                         self.optimum = np.append(self.optimum, conv_val) # Append the conversion value to the optimum array
                 except Exception as e:
                     print("Warning: couldn't extract conversion value:", e) # Print a warning if the conversion value can't be extracted
