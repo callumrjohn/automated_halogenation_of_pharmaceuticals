@@ -5,6 +5,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import LeaveOneOut
 from scipy.signal import find_peaks
+from scipy.interpolate import CubicSpline
 
 
 
@@ -169,7 +170,6 @@ class Halogenation:
                                                        'mae': mae}})
     
     
-    
     # Methods to select the best model for yield and conversion (ie the lowest mean absolute error)
     def best_model_yield(self):
         bestmodel = min([self.yieldoutputs[kernel]['mae'] for kernel in self.yieldoutputs.keys()]) #find the kernel with the lowest mean absolute error
@@ -238,3 +238,32 @@ class Halogenation:
 
         return self.optimum # Return the optimum acid equiv with predicted yield and conversion values
 
+    # Benchmark the spline interpolation method against the GPR model for a given dataset
+    def spline_benchmark(self):
+        
+        X = self.acidequiv
+        y = self.yieldvalues
+       
+        x = np.linspace(np.min(X), np.max(X), 1000)
+        
+        model = CubicSpline(X, y)
+
+        y_pred = model(x) #predict the yield values for all 1000 x values
+        
+        # Cross validation
+        loo = LeaveOneOut() # Use LeaveOneOut cross validation to calculate the mean absolute error for each model
+        neg_aes = [] #initialize a list to store negative mean and actual errors
+
+        # Loop through the LeaveOneOut splits
+        for train_index, test_index in loo.split(X):
+            X_train, X_test = X[train_index], X[test_index]
+            y_train, y_test = y[train_index], y[test_index]
+
+            model_loo = CubicSpline(X_train, y_train) # Run a new model for all LOO splits
+            abs_error = -abs(model_loo(X_test) - y_test) # Calculate the absolute error for each LOO split
+            neg_aes.append(abs_error[0]) # Append the negative absolute error to the list
+        
+        # Calculate the mean absolute error for all LOO split models
+        mae = -mean(neg_aes)
+
+        return x, y_pred, mae
