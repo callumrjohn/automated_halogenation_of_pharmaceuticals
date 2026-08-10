@@ -1,0 +1,29 @@
+descriptor,f_value
+Fukui dual_ch_min,0.782608695652174
+Fukui-_ch_max,0.6086956521739131
+Normaliz. nucleophil._ch_min,0.6086956521739131
+Normaliz. electrophil._ch_min,0.5652173913043478
+Fukui+_ch_min,0.5652173913043478
+Atom Polarizability_ch_max,0.5217391304347826
+Fukui_rad_ch_max,0.43478260869565216
+Electrophil._ch_min,0.43478260869565216
+Atom FOD_ch_min,0.391304347826087
+Dipole moment_ch_max,0.391304347826087
+H bond H2O_ch_min,0.391304347826087
+Atom dispersion_ch_max,0.391304347826087
+Atom SASA_ch_min,0.34782608695652173
+Fukui_rad_ch_min,0.34782608695652173
+Dipole moment_ch_min,0.34782608695652173
+Atom FOD_ch_max,0.21739130434782608
+Coord. numbers_ch_min,0.21739130434782608
+Coord. numbers_ch_max,0.21739130434782608
+Atom SASA_ch_max,0.21739130434782608
+Atom dispersion_ch_min,0.21739130434782608
+Normaliz. nucleophil._ch_max,0.17391304347826086
+Fukui-_ch_min,0.17391304347826086
+Normaliz. electrophil._ch_max,0.13043478260869565
+Electrophil._ch_max,0.13043478260869565
+Fukui+_ch_max,0.13043478260869565
+Fukui dual_ch_max,0.08695652173913043
+Atom Polarizability_ch_min,0.08695652173913043
+H bond H2O_ch_max,0.08695652173913043
