@@ -12,7 +12,7 @@ This code accompanies:
 - **Authors:** **Callum R. John**, Eric Tan, Callum S. Begg, Andrew J. P. White, Peter Buijnsters, Jesús Alcázar, Alex M. Ganose, Rebecca L. Greenaway, and James A. Bull  
 - **Journal / Year:** XXXXXX 
 - **DOI:**  10.XXXX/XXXX_  
-- **Preprint:** XXXXXX
+- **Preprint:** _ChemRxiv_, 2026, https://doi.org/10.26434/chemrxiv.15000393/v1
 
 ---
 

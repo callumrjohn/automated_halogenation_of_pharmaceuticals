@@ -12,17 +12,20 @@ This code accompanies:
 - **Authors:** **Callum R John**, Eric Tan, Callum S Begg, Andrew J P White, Peter Buijnsters, Jesús Alcázar, Alex M Ganose, Rebecca L Greenaway, and James A Bull  
 - **Journal / Year:** XXXXXX 
 - **DOI:**  10.XXXX/XXXX_  
-- **Preprint:** XXXXXX
+- **Preprint:** _ChemRxiv_, 2026, https://doi.org/10.26434/chemrxiv.15000393/v1
 
 ---
 
 ## Table of contents
-- `/descriptors`**:** Directory containing the outputs of `xtb_descriptor_gen.py`.
-- `f_values_top1.csv`**:** F-scores for the minimum and maximum values of xTB descriptors when the correct C-H halogenation regeochemistry is correctly predicted.
-- `f_values_top2.csv`**:** F-scores for the minimum and maximum values of xTB descriptors when the correct C-H halogenation regeochemistry is within the top two predictions.
+- `/aqme_outputs_neutral`**:** Directory containing the outputs of `xtb_descriptor_gen.py` using `smiles.csv`.
+- `/aqme_outputs_protonated`**:** Directory containing the outputs of `xtb_descriptor_gen.py` using `smiles_protonated.csv`.
+- `f_values_top1_protonated.csv`**:** Accuracy scores for the minimum and maximum values of xTB descriptors when the correct C-H halogenation regeochemistry is correctly predicted for protonated compounds.
+- `f_values_top1.csv`**:** Accuracy scores for the minimum and maximum values of xTB descriptors when the correct C-H halogenation regeochemistry is correctly predicted for neutral compounds.
+- `f_values_top2.csv`**:** Accuracy scores for the minimum and maximum values of xTB descriptors when the correct C-H halogenation regeochemistry is within the top two predictions for neutral compounds.
 - `README.md`**:** This file.
 - `smiles.csv`**:** SMILES strings and names of all the substrates investigated in the accompanying publication.
-- `xtb_descriptor_gen.py`**:** Program used to generate xTB descriptors for the compounds in `smiles.csv`.
+- `smiles_protonated.csv`**:** SMILES strings and names of all the protonated forms of the substrates investigated in the accompanying publication. Protonation sites were selected with the aid of the molGpka web-app (https://doi.org/10.1021/acs.jcim.1c00075).
+- `xtb_descriptor_gen.py`**:** Program used to generate xTB descriptors for the compounds in `smiles.csv` and `smiles_protonated.csv`.
 - `xtb_desciptors_regiochem.ipynb`**:** Jupyter notebook containing investigation of how xTB atomic descriptors can be used to predict the regiochemistry of electrophilic aromatic C-H halogenations.
 
 ---
@@ -30,7 +33,7 @@ This code accompanies:
 ## Requirements and installation
 
 - **Python 3.10** recommended.  
-- Numpy, Pandas, AQME, OpenBabel, RDKit
+- Numpy, Pandas, AQME 2.0, OpenBabel, RDKit
 
 ***Note:*** For xTB descriptor generation using AQME, OpenBabel must be installed, which requires a Unix-based OS (macOS/Linux).
 
